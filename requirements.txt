@@ -1,0 +1,3 @@
+requests>=2.3
+xmltodict==0.9.0
+python-money==0.5
