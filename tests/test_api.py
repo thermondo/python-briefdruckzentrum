@@ -39,7 +39,7 @@ VALID_RESPONSE = (
 class TestClient(object):
     @pytest.yield_fixture
     def pdf(self):
-        with open(os.path.join(FIXTURE_DIR, 'LICENSE.pdf')) as f:
+        with open(os.path.join(FIXTURE_DIR, 'LICENSE.pdf'), 'rb') as f:
             yield f
 
     @pytest.fixture
