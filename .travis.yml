@@ -4,12 +4,13 @@ python:
 - '2.7'
 - '3.2'
 - '3.3'
-env:
-- secure: AhUDHU9J0n3VKzBBAOtC0dXNQmIFVl11isjgDrgtxTYZhYIOYuEuPRwwaJGzJbsS9aBDNAN9zdiUeGPZsU3hwSDM2mQzt1D/il7rUvEOCf8jYXGYDQn7ic/vpVcj/BS60emKa9nqxKG2N+qbgKOy84nJRudNGmyIOnq2GX+t8gc=
-- secure: m6kSRZyfA1tiwnqPd47ZDcFqYVF8H5IhLA5y3ZP1DxtfrBuIn67BiA8ix0UIfUJV9XZzMIyfaC6S/cAkBm6VX0MufkZ3WP8Zo309rkbkOkolTMrHjza4s6AXy7tuI21nnjiX9FMsdoIenM/Y1NMq40XXV3x7lj9LM5voZu2NZIQ=
 install:
 - pip install .
 - pip install pytest pytest-pep8 pytest-flakes
 - pip install coveralls
 script: coverage run --source=briefdruckzentrum runtests.py
 after_success: coveralls
+env:
+  global:
+  - secure: HN+9qO7DYAQM6DLrod1LZEJbd4mvqWkywBcQti96HznAu3w9RgEaeSC9134HllsByIwz9U59cgZ43lc3z0gXevm0wbst0NkPOPOG/zss1PE2cEEsvPdJ8wWP6e6/P5WSrdn5ro7dXuR1iQYo2sNNGIF5dtUTeH78hCNQKUhi/kE=
+  - secure: aAEy7F8HJC3OA1nquwCqlMqzkGqIMHWgVpaxQOayK709Ha+haVmCNL+dtyQU/GrG0K26zhIf9wYQOQEngSUhLcUZsTufu6M3jfU7PqJyt4o7C/WYmD/v/ZoRB9AyFltEW7uOiFhMnxWKdQOQLjD5fTvlctR6I3q5V4E6rtGWlTE=
