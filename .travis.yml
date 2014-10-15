@@ -10,6 +10,7 @@ env:
     secure: m6kSRZyfA1tiwnqPd47ZDcFqYVF8H5IhLA5y3ZP1DxtfrBuIn67BiA8ix0UIfUJV9XZzMIyfaC6S/cAkBm6VX0MufkZ3WP8Zo309rkbkOkolTMrHjza4s6AXy7tuI21nnjiX9FMsdoIenM/Y1NMq40XXV3x7lj9LM5voZu2NZIQ=
 install:
 - pip install .
+- pip install pytest pytest-pep8 pytest-flakes
 - pip install coveralls
 script: coverage run --source=briefdruckzentrum runtests.py
 after_success: coveralls
