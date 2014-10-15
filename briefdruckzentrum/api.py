@@ -105,6 +105,8 @@ class Client(object):
                                              envelope_format, name, test)
 
         response = requests.post(url, data=data, files=files, auth=self.auth)
+        if response.status_code != 200:
+            response.raise_for_status()
         order = Order(response.text)
         order.request = response.request
         return order
