@@ -7,6 +7,7 @@ from briefdruckzentrum.api import Client, Order
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+FIXTURE_DIR = os.path.join(BASE_DIR, 'fixtures')
 
 VALID_RESPONSE = (
     '<?xml version="1.0" encoding="UTF-8"?>'
@@ -37,7 +38,7 @@ VALID_RESPONSE = (
 class TestClient(object):
     @pytest.yield_fixture
     def pdf(self):
-        with open(os.path.join(BASE_DIR, 'LICENSE.pdf')) as f:
+        with open(os.path.join(FIXTURE_DIR, 'LICENSE.pdf')) as f:
             yield f
 
     @pytest.fixture
