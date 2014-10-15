@@ -1,5 +1,5 @@
 from __future__ import (unicode_literals, absolute_import)
-from money import CURRENCY, Money
+from money import Money
 
 import requests
 import xmltodict
@@ -16,11 +16,11 @@ class Costs(dict):
         super(Costs, self).__init__(**kwargs)
         self.update(raw_dict)
         self.production = Money(amount=float(raw_dict['Betrag']) / 100,
-                                currency=CURRENCY['EUR'])
+                                currency='EUR')
         self.shipping = Money(amount=float(raw_dict['Porto']) / 100,
-                              currency=CURRENCY['EUR'])
+                              currency='EUR')
         self.tax_free = Money(amount=float(raw_dict['Porto_MwSt_Frei']) / 100,
-                              currency=CURRENCY['EUR'])
+                              currency='EUR')
 
 
 class Order(object):

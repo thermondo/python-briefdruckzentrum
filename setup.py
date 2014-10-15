@@ -45,7 +45,7 @@ setup(
     ],
     packages=['briefdruckzentrum'],
     include_package_data=True,
-    install_requires=['requests>=2.3', 'xmltodict>=0.9.0', 'python-money==0.5'],
+    install_requires=['requests>=2.3', 'xmltodict>=0.9', 'money>=1.2'],
     tests_require=['pytest', 'pytest-pep8', 'pytest-flakes'],
     cmdclass={'test': PyTest},
 )
