@@ -1,0 +1,15 @@
+language: python
+python:
+- '2.6'
+- '2.7'
+- '3.2'
+- '3.3'
+env:
+  global:
+    secure: AhUDHU9J0n3VKzBBAOtC0dXNQmIFVl11isjgDrgtxTYZhYIOYuEuPRwwaJGzJbsS9aBDNAN9zdiUeGPZsU3hwSDM2mQzt1D/il7rUvEOCf8jYXGYDQn7ic/vpVcj/BS60emKa9nqxKG2N+qbgKOy84nJRudNGmyIOnq2GX+t8gc=
+    secure: m6kSRZyfA1tiwnqPd47ZDcFqYVF8H5IhLA5y3ZP1DxtfrBuIn67BiA8ix0UIfUJV9XZzMIyfaC6S/cAkBm6VX0MufkZ3WP8Zo309rkbkOkolTMrHjza4s6AXy7tuI21nnjiX9FMsdoIenM/Y1NMq40XXV3x7lj9LM5voZu2NZIQ=
+install:
+- pip install .
+- pip install coveralls
+script: coverage run --source=briefdruckzentrum runtests.py
+after_success: coveralls

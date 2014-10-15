@@ -7,7 +7,8 @@ import xmltodict
 
 class Error(object):
     def __init__(self, raw_string):
-        self.code, self.message = raw_string.split(':', 1)
+        code, self.message = raw_string.split(':', 1)
+        self.code = int(code)
 
 
 class Costs(dict):
@@ -43,18 +44,20 @@ class Order(object):
 
     URL = 'https://www.briefdruckzentrum.de/rest/bdz/auftrag'
 
+    errors = None
+
     @classmethod
     def get_request(cls, file, color_mode, region,
                     duplex=DUPLEX, paper=0, envelopeDL=0, envelopeC4=0,
                     envelope_format=ENVELOPE_DL, name=None, test=True):
 
-        if not color_mode in cls.COLOR_MODES:
+        if color_mode not in cls.COLOR_MODES:
             raise ValueError('"%s"  is not a valid color_mode option.' % color_mode)
 
-        if not region in cls.REGIONS:
+        if region not in cls.REGIONS:
             raise ValueError('"%s"  is not a valid region.' % region)
 
-        if not envelope_format in cls.ENVELOPE_FORMATS:
+        if envelope_format not in cls.ENVELOPE_FORMATS:
             raise ValueError('"%s" is not a valid envelope format.' % envelope_format)
 
         if not isinstance(test, bool):
@@ -74,8 +77,7 @@ class Order(object):
 
     def __init__(self, response):
         self.response = response
-        self.request = response.request
-        r_dict = xmltodict.parse(response.text)['Auftrag']
+        r_dict = xmltodict.parse(response)['Auftrag']
         if 'Error' in r_dict:
             if isinstance(r_dict['Error']['Error'], list):
                 self.errors = [Error(e) for e in r_dict['Error']['Error']]
@@ -98,8 +100,11 @@ class Client(object):
     def create_order(self, file, color_mode, region,
                      duplex=Order.DUPLEX, paper=0, envelopeDL=0, envelopeC4=0,
                      envelope_format=Order.ENVELOPE_DL, name=None, test=True):
-        url, data, files = Order.get_request(file, color_mode, region, duplex, paper, envelopeDL, envelopeC4,
+        url, data, files = Order.get_request(file, color_mode, region, duplex,
+                                             paper, envelopeDL, envelopeC4,
                                              envelope_format, name, test)
 
         response = requests.post(url, data=data, files=files, auth=self.auth)
-        return Order(response)
+        order = Order(response.text)
+        order.request = response.request
+        return order
