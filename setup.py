@@ -21,7 +21,7 @@ class PyTest(Command):
 
 setup(
     name='python-briefdruckzentrum',
-    version='0.1.0',
+    version='0.1.1',
     description='a lightweight python wrapper for briefdruckzentrum.de API',
     author='codingjoe',
     url='https://github.com/Thermondo/python-briefdruckzentrum',

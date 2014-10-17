@@ -11,6 +11,9 @@ class Error(object):
         code, self.message = raw_string.split(':', 1)
         self.code = int(code)
 
+    def __unicode__(self):
+        return '<Error {code}: "{message}">'.format(code=self.code, message=self.message)
+
 
 class Costs(dict):
     def __init__(self, raw_dict, **kwargs):
