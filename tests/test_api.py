@@ -4,7 +4,7 @@ from __future__ import (unicode_literals, absolute_import)
 import os
 import pytest
 
-from briefdruckzentrum.api import Client, Order
+from briefdruckzentrum.api import Client, Order, OrderException
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -48,19 +48,25 @@ class TestClient(object):
         password = os.environ.get('PASSWORD')
         return Client(user, password)
 
-    @pytest.fixture
-    def order(self, client, pdf):
-        return client.create_order(pdf, 2, 1)
-
     def test_create_order(self, client, pdf):
-        response = client.create_order(pdf, 2, 1)
+        response = client.create_order(pdf, Order.COLOUR, Order.GERMANY)
+
+        # test-mode
         assert len(response.errors) == 1
         assert response.errors[0].code == 900
 
+        costs = response.costs
+        assert float(costs.production) > 0
+        assert float(costs.shipping) > 0
+        assert float(costs.shipping_tax_free) == 0
+
     def test_wrong_file(self, client):
-        response = client.create_order('foo bar', 2, 1)
-        assert len(response.errors) > 1
-        assert response.errors[1].code == 100
+        with pytest.raises(OrderException) as exc:
+            client.create_order('foo bar', 2, 1)
+
+        e = exc.value
+        assert len(e.errors) == 1
+        assert e.errors[0].code == 100
 
 
 class TestOrder(object):
