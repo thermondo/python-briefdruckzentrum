@@ -46,7 +46,7 @@ class TestClient(object):
     def client(self):
         user = os.environ.get('USERNAME')
         password = os.environ.get('PASSWORD')
-        return Client(user, password)
+        return Client(user, password, verify=True)
 
     def test_create_order(self, client, pdf):
         response = client.create_order(pdf, Order.COLOUR, Order.GERMANY)
