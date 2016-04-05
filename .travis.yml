@@ -7,7 +7,7 @@ install:
 - pip install .
 - pip install pytest pytest-pep8 pytest-flakes
 - pip install coveralls
-script: coverage run --source=briefdruckzentrum runtests.py
+script: coverage run --source=briefdruckzentrum -m 'pytest'
 after_success: coveralls
 env:
   global:
