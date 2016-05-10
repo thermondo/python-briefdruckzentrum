@@ -4,9 +4,11 @@ from __future__ import (unicode_literals, absolute_import)
 import logging
 
 import requests
+import ssl
 import xmltodict
 from money import Money
 
+from briefdruckzentrum.adapters import SSLAdapter
 
 logger = logging.getLogger(__name__)
 
@@ -114,6 +116,7 @@ class Order(object):
 class Client(object):
     def __init__(self, user, password):
         self.session = requests.Session()
+        self.session.mount('https://', SSLAdapter(ssl_version=ssl.PROTOCOL_TLSv1))
         self.session.auth = (user, password)
         self.session.verify = True
 
