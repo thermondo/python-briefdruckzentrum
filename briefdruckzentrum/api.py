@@ -114,11 +114,11 @@ class Order(object):
 
 
 class Client(object):
-    def __init__(self, user, password):
+    def __init__(self, user, password, verify=True):
         self.session = requests.Session()
         self.session.mount('https://', SSLAdapter(ssl_version=ssl.PROTOCOL_TLSv1))
         self.session.auth = (user, password)
-        self.session.verify = True
+        self.session.verify = verify
 
     def create_order(self, file, color_mode, region,
                      duplex=Order.DUPLEX, paper=0, envelopeDL=0, envelopeC4=0,
