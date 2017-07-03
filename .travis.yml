@@ -16,3 +16,12 @@ env:
   global:
   - secure: HN+9qO7DYAQM6DLrod1LZEJbd4mvqWkywBcQti96HznAu3w9RgEaeSC9134HllsByIwz9U59cgZ43lc3z0gXevm0wbst0NkPOPOG/zss1PE2cEEsvPdJ8wWP6e6/P5WSrdn5ro7dXuR1iQYo2sNNGIF5dtUTeH78hCNQKUhi/kE=
   - secure: aAEy7F8HJC3OA1nquwCqlMqzkGqIMHWgVpaxQOayK709Ha+haVmCNL+dtyQU/GrG0K26zhIf9wYQOQEngSUhLcUZsTufu6M3jfU7PqJyt4o7C/WYmD/v/ZoRB9AyFltEW7uOiFhMnxWKdQOQLjD5fTvlctR6I3q5V4E6rtGWlTE=
+deploy:
+  provider: pypi
+  user: codingjoe
+  password:
+    secure: XKaKPDGFat89OVxBEEBXOWaDnWtYRoq7QjHkFV0P4l8kpGq4xOMWzisDZ4jH9Vi46bstdCom716XrO51aPdY+1CYTyV2SerREDcynUlz2h5c/h4zhNT1Hu7I423bdHjPqkuICVMszXMxjZjSquuvsdQrQSXSL1aTb54LjqCXSzA=
+  on:
+    tags: true
+    distributions: sdist bdist_wheel
+    repo: Thermondo/python-briefdruckzentrum
