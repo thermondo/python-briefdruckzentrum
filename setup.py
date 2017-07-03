@@ -21,7 +21,7 @@ class PyTest(Command):
 
 setup(
     name='python-briefdruckzentrum',
-    version='0.1.3',
+    version='0.1.4',
     description='a lightweight python wrapper for briefdruckzentrum.de API',
     author='codingjoe',
     url='https://github.com/Thermondo/python-briefdruckzentrum',
@@ -45,7 +45,7 @@ setup(
     ],
     packages=['briefdruckzentrum'],
     include_package_data=True,
-    install_requires=['requests>=2.3', 'xmltodict>=0.9', 'money>=1.2'],
+    install_requires=['requests>=2.12', 'xmltodict>=0.9', 'money>=1.2'],
     tests_require=['pytest', 'pytest-pep8', 'pytest-flakes'],
     cmdclass={'test': PyTest},
 )
